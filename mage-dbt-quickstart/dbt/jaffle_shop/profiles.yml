@@ -1,0 +1,13 @@
+---
+jaffle_shop:
+  outputs:
+    dev:
+      type: postgres
+      host: "{{ env_var('PG_HOST', 'host.docker.internal') }}"
+      user: "{{ env_var('POSTGRES_USER', 'postgres') }}"
+      password: "{{ env_var('POSTGRES_PASSWORD', 'postgres') }}"
+      port: 5432
+      dbname: "{{ env_var('POSTGRES_DB', 'postgres') }}"
+      schema: "{{ env_var('POSTGRES_SCHEMA', 'analytics') }}"
+      threads: 4
+  target: dev
