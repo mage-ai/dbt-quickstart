@@ -23,7 +23,7 @@ services:
   
   postgres:
     image: postgres:10.5
-    restart: on-failure
+    restart: on-failure:5
     container_name: ${PROJECT_NAME}-postgres
     env_file:
       - .env
