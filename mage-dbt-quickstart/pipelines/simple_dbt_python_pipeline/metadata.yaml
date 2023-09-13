@@ -1,0 +1,102 @@
+blocks:
+- all_upstream_blocks_executed: true
+  color: null
+  configuration:
+    dbt:
+      command: seed
+    dbt_profile_target: ''
+    dbt_project_name: jaffle_shop
+    export_write_policy: append
+    use_raw_sql: false
+  downstream_blocks:
+  - jaffle_shop/models/staging/stg_customers
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: yaml
+  name: seed_models
+  retry_config: null
+  status: executed
+  timeout: null
+  type: dbt
+  upstream_blocks: []
+  uuid: seed_models
+- all_upstream_blocks_executed: true
+  color: null
+  configuration:
+    dbt: {}
+    dbt_profile_target: null
+    export_write_policy: append
+    file_path: jaffle_shop/models/staging/stg_customers.sql
+    limit: 1000
+    use_raw_sql: false
+  downstream_blocks:
+  - clean_stage
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: sql
+  name: jaffle_shop/models/staging/stg_customers
+  retry_config: null
+  status: executed
+  timeout: null
+  type: dbt
+  upstream_blocks:
+  - seed_models
+  uuid: jaffle_shop/models/staging/stg_customers
+- all_upstream_blocks_executed: true
+  color: null
+  configuration:
+    export_write_policy: append
+  downstream_blocks:
+  - cur_customers
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: clean_stage
+  retry_config: null
+  status: executed
+  timeout: null
+  type: transformer
+  upstream_blocks:
+  - jaffle_shop/models/staging/stg_customers
+  uuid: clean_stage
+- all_upstream_blocks_executed: true
+  color: null
+  configuration: {}
+  downstream_blocks: []
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: cur_customers
+  retry_config: null
+  status: executed
+  timeout: null
+  type: data_exporter
+  upstream_blocks:
+  - clean_stage
+  uuid: cur_customers
+callbacks: []
+concurrency_config: {}
+conditionals: []
+created_at: '2023-09-08 18:52:53.153184+00:00'
+data_integration: null
+description: "This pipeline pulls the jaffle_shop demo from dbt and creates a profiles.yml\
+  \ file for executing it. \n\nRunning the pipeline triggers a `dbt build,` writing\
+  \ data to the postgres database in our Docker Network."
+executor_config: {}
+executor_count: 1
+executor_type: null
+extensions: {}
+name: simple_dbt_python_pipeline
+notification_config: {}
+retry_config: {}
+run_pipeline_in_one_process: false
+spark_config: {}
+tags: []
+type: python
+updated_at: '2023-09-13 20:03:51'
+uuid: simple_dbt_python_pipeline
+widgets: []

@@ -1,0 +1,80 @@
+blocks:
+- all_upstream_blocks_executed: true
+  color: teal
+  configuration:
+    file_path: null
+  downstream_blocks:
+  - load_profile
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: pull_jaffle_shop
+  retry_config: null
+  status: executed
+  timeout: null
+  type: custom
+  upstream_blocks: []
+  uuid: pull_jaffle_shop
+- all_upstream_blocks_executed: true
+  color: teal
+  configuration:
+    file_path: null
+  downstream_blocks:
+  - dbt_build_jaffle_shop
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: load_profile
+  retry_config: null
+  status: executed
+  timeout: null
+  type: custom
+  upstream_blocks:
+  - pull_jaffle_shop
+  uuid: load_profile
+- all_upstream_blocks_executed: true
+  color: null
+  configuration:
+    dbt:
+      command: build
+    dbt_profile_target: dev
+    dbt_project_name: jaffle_shop
+    export_write_policy: append
+    use_raw_sql: false
+  downstream_blocks: []
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: yaml
+  name: dbt_build_jaffle_shop
+  retry_config: null
+  status: executed
+  timeout: null
+  type: dbt
+  upstream_blocks:
+  - load_profile
+  uuid: dbt_build_jaffle_shop
+callbacks: []
+concurrency_config: {}
+conditionals: []
+created_at: '2023-09-08 18:52:53.153184+00:00'
+data_integration: null
+description: "This pipeline pulls the jaffle_shop demo from dbt and creates a profiles.yml\
+  \ file for executing it. \n\nRunning the pipeline triggers a `dbt build,` writing\
+  \ data to the postgres database in our Docker Network."
+executor_config: {}
+executor_count: 1
+executor_type: null
+extensions: {}
+name: dynamic_dbt_pipeline
+notification_config: {}
+retry_config: {}
+run_pipeline_in_one_process: false
+spark_config: {}
+tags: []
+type: python
+updated_at: '2023-09-08 19:30:59'
+uuid: dynamic_dbt_pipeline
+widgets: []
