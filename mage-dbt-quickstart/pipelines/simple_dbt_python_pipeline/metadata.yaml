@@ -83,9 +83,9 @@ concurrency_config: {}
 conditionals: []
 created_at: '2023-09-08 18:52:53.153184+00:00'
 data_integration: null
-description: "This pipeline pulls the jaffle_shop demo from dbt and creates a profiles.yml\
-  \ file for executing it. \n\nRunning the pipeline triggers a `dbt build,` writing\
-  \ data to the postgres database in our Docker Network."
+description: "This pipeline seeds a demo customers dataset from the dbt jaffle shop\
+  \ demo, \nexecutes a staging model, and performs a Python transformation before\
+  \ exporting it to Postgres."
 executor_config: {}
 executor_count: 1
 executor_type: null
@@ -97,6 +97,6 @@ run_pipeline_in_one_process: false
 spark_config: {}
 tags: []
 type: python
-updated_at: '2023-09-13 20:03:51'
+updated_at: '2023-09-13 21:04:13'
 uuid: simple_dbt_python_pipeline
 widgets: []
